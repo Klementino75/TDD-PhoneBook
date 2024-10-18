@@ -1,2 +1,10 @@
-package PACKAGE_NAME;public class PhoneBook {
+
+public class PhoneBook {
+
+    PhoneBook() {
+    }
+
+    public int add(String name, String numberPhone) {
+        return 0;
+    }
 }
