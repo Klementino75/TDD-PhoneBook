@@ -77,7 +77,19 @@ public class PhoneBookTest {
     }
 
     public static Stream<Arguments> findByNumberTest() {
-        return Stream.of(Arguments.of(null, "+7 (900) 100-1111"));
+        return Stream.of(Arguments.of("Name1", "+7 (900) 100-1111"));
+    }
+
+    @DisplayName("Тест метода findByName()")
+    @Test
+    void findByNameTest() {
+        phoneBook.add("Name1", "+7 (900) 100-1111");
+        phoneBook.add("Name2", "+7 (900) 100-2222");
+        String expected = "+7 (900) 100-1111";
+        String result = phoneBook.findByName("Name1");
+
+        Assertions.assertEquals(expected, result);
+        System.out.println(expected + " = " + result + " - Ok!");
     }
 
 }
