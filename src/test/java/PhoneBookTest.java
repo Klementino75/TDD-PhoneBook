@@ -4,11 +4,17 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
 @DisplayName("Тесты работы PhoneBook: ")
 public class PhoneBookTest {
-    PhoneBook phoneBook = new PhoneBook();
+    private static PhoneBook phoneBook = new PhoneBook();
+
+    @BeforeAll
+    static void beforeAll() {
+        phoneBook = PhoneBook.getINSTANCE();
+    }
 
     @BeforeEach
     void beforeEach() {
@@ -24,6 +30,7 @@ public class PhoneBookTest {
     @ParameterizedTest
     @MethodSource
     void addTest(String name, String numberPhone, int expected) {
+        phoneBook.add("Name1", "+7 (900) 100-1111");
         int countNumber = phoneBook.add(name, numberPhone);
 
         Assertions.assertEquals(expected, countNumber);
@@ -31,6 +38,11 @@ public class PhoneBookTest {
     }
 
     public static Stream<Arguments> addTest() {
-        return Stream.of(Arguments.of("Name1", "+7 (900) 111-1111", 0));
+        return Stream.of(Arguments.of("Name1", "+7 (900) 100-1111", 1),
+                Arguments.of("Name2", "+7 (900) 100-2222", 2),
+                Arguments.of("Name3", "+7 (900) 100-3333", 3),
+                Arguments.of("Name1", "+7 (900) 100-1111", 3),
+                Arguments.of("Name4", "+7 (900) 100-4444", 4));
     }
+
 }
