@@ -31,7 +31,10 @@ public class PhoneBook {
     }
 
     public String findByNumber(String numberPhone) {
-        return null;
+        return phoneBook.entrySet().stream()
+                .filter(b -> b.getValue().equals(numberPhone))
+                .map(Map.Entry::getKey)
+                .findFirst()
+                .orElse(null);
     }
-
 }
