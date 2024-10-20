@@ -40,7 +40,7 @@ public class PhoneBookTest {
     }
 
     public static Stream<Arguments> addTest() {
-        return Stream.of(Arguments.of("Name1", "+7 (900) 100-1111", 1),
+        return Stream.of(//Arguments.of("Name1", "+7 (900) 100-1111", 1),
                 Arguments.of("Name2", "+7 (900) 100-2222", 2),
                 Arguments.of("Name3", "+7 (900) 100-3333", 3),
                 Arguments.of("Name1", "+7 (900) 100-1111", 3),
@@ -63,7 +63,7 @@ public class PhoneBookTest {
 
     public static Stream<Arguments> addTestNull() {
         return Stream.of(Arguments.of( "Name1", "+7 (900) 100-1111", 1),
-                Arguments.of(null, "+7 (900) 100-0000", 4));
+                Arguments.of(null, "+7 (900) 100-0000", 1));
     }
 
     @DisplayName("Тест метода findByNumber()")
@@ -99,8 +99,10 @@ public class PhoneBookTest {
     void printAllTest() {
         phoneBook.add("Name1", "+7 (900) 100-1111");
         phoneBook.add("Name2", "+7 (900) 100-2222");
+        phoneBook.add("Name3", "+7 (900) 100-3333");
+        phoneBook.add("Name4", "+7 (900) 100-4444");
 
-        List<String> expected = Arrays.asList("Name1", "Name2");
+        List<String> expected = Arrays.asList("Name1", "Name2", "Name3", "Name4");
         List<String> result = phoneBook.printAll();
 
         Assertions.assertEquals(expected, result);

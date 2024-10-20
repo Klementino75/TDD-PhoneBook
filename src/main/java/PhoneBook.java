@@ -20,6 +20,14 @@ public class PhoneBook {
         }
         return INSTANCE;
     }
+//    Или так...
+//    private static final class InstanceHolder {
+//        private static final PhoneBook INSTANCE = new PhoneBook();
+//    }
+//
+//    public static PhoneBook getINSTANCE() {
+//        return InstanceHolder.INSTANCE;
+//    }
 
     public int add(String name, String numberPhone) {
         if (name == null || name.isEmpty()) {
