@@ -1,4 +1,5 @@
 
+import java.util.Map;
 import java.util.TreeMap;
 
 public class PhoneBook {
@@ -27,6 +28,10 @@ public class PhoneBook {
             phoneBook.put(name, numberPhone);
         }
         return phoneBook.size();
+    }
+
+    public String findByNumber(String numberPhone) {
+        return null;
     }
 
 }

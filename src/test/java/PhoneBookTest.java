@@ -44,7 +44,7 @@ public class PhoneBookTest {
                 Arguments.of("Name1", "+7 (900) 100-1111", 3),
                 Arguments.of("Name4", "+7 (900) 100-4444", 4));
     }
-    
+
     @DisplayName("Тест метода add() на null")
     @ParameterizedTest
     @MethodSource
@@ -63,4 +63,21 @@ public class PhoneBookTest {
         return Stream.of(Arguments.of( "Name1", "+7 (900) 100-1111", 1),
                 Arguments.of(null, "+7 (900) 100-0000", 4));
     }
+
+    @DisplayName("Тест метода findByNumber()")
+    @ParameterizedTest
+    @MethodSource
+    void findByNumberTest(String expected, String numberPhone) {
+        phoneBook.add("Name1", "+7 (900) 100-1111");
+        phoneBook.add("Name2", "+7 (900) 100-2222");
+        String result = phoneBook.findByNumber(numberPhone);
+
+        Assertions.assertEquals(expected, result);
+        System.out.println(expected + " = " + result + " - Ok!");
+    }
+
+    public static Stream<Arguments> findByNumberTest() {
+        return Stream.of(Arguments.of(null, "+7 (900) 100-1111"));
+    }
+
 }
