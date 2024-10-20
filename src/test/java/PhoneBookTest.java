@@ -44,5 +44,23 @@ public class PhoneBookTest {
                 Arguments.of("Name1", "+7 (900) 100-1111", 3),
                 Arguments.of("Name4", "+7 (900) 100-4444", 4));
     }
+    
+    @DisplayName("Тест метода add() на null")
+    @ParameterizedTest
+    @MethodSource
+    void addTestNull(String name, String numberPhone) {
+        AtomicInteger countNumber = new AtomicInteger();
+        Throwable exception;
 
+        exception = Assertions.assertThrows(NullPointerException.class, () -> {
+            countNumber.set(phoneBook.add(name, numberPhone));
+            throw new NullPointerException("ERROR");
+        });
+        System.out.println(exception + " -> " + countNumber + " - Ok!");
+    }
+
+    public static Stream<Arguments> addTestNull() {
+        return Stream.of(Arguments.of( "Name1", "+7 (900) 100-1111", 1),
+                Arguments.of(null, "+7 (900) 100-0000", 4));
+    }
 }
