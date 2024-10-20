@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -42,4 +43,7 @@ public class PhoneBook {
         return phoneBook.get(name);
     }
 
+    public List<String> printAll() {
+        return new ArrayList<>(phoneBook.keySet());
+    }
 }

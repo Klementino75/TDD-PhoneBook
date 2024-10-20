@@ -4,6 +4,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Stream;
 
@@ -92,4 +94,16 @@ public class PhoneBookTest {
         System.out.println(expected + " = " + result + " - Ok!");
     }
 
+    @DisplayName("Тест метода printAll()")
+    @Test
+    void printAllTest() {
+        phoneBook.add("Name1", "+7 (900) 100-1111");
+        phoneBook.add("Name2", "+7 (900) 100-2222");
+
+        List<String> expected = Arrays.asList("Name1", "Name2");
+        List<String> result = phoneBook.printAll();
+
+        Assertions.assertEquals(expected, result);
+        System.out.println(expected + " = " + result + " - Ok!");
+    }
 }
